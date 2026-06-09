@@ -5,19 +5,43 @@
 }
 
 body {
+  max-height: 100vh;
   background-color: #000;
   color: #fff;
   font-family: Arial, sans-serif;
+  text-align: center;
 }
 
 .content {
-  margin: auto;
-  padding: 20px;
+  margin: 20rem auto;
+  padding: 1rem;
 }
 
 .title {
-  font-size: 24px;
+  font-size: 5rem;
+  text-transform: uppercase;
+  text-decoration: overline;
+  text-shadow: 0 0 1rem #ffffff;
+  font-style: italic;
+  letter-spacing: 0.3rem;
   margin-bottom: 20px;
+}
+
+.audio-btn {
+  margin: 0.5rem;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  /* background-color: #; */
+  /* color: #fff; */
+  border-radius: 0.5rem;
+  border: none;
+  cursor: pointer;
+}
+
+.audio-btn:hover {
+  box-shadow: 0 0 1rem #ceb708;
+  color: #000000;
+  background-color: #ceb708;
 }
 
 .toast {
