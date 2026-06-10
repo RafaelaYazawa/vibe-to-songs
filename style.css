@@ -1,47 +1,70 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 body {
   max-height: 100vh;
   background-color: #000;
   color: #fff;
   font-family: Arial, sans-serif;
   text-align: center;
+  overflow: hidden;
 }
 
 .content {
-  margin: 20rem auto;
   padding: 1rem;
 }
 
 .title {
   font-size: 5rem;
   text-transform: uppercase;
-  text-decoration: overline;
   text-shadow: 0 0 1rem #ffffff;
   font-style: italic;
-  letter-spacing: 0.3rem;
+  letter-spacing: 0.2rem;
   margin-bottom: 20px;
 }
 
+.title:hover {
+  animation: textDisperse 1.2s linear;
+  animation-fill-mode: forwards;
+}
+
+@keyframes textDisperse {
+  0% {
+    opacity: 1;
+    text-shadow:
+      0 2rem 2rem #ff0095,
+      0 2rem 2rem #8800ff,
+      -2rem 0 2rem #00aaff;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 0;
+    transform: skewX(30deg) skewY(10deg);
+  }
+}
+
 .audio-btn {
-  margin: 0.5rem;
-  padding: 0.5rem 1rem;
-  font-size: 1rem;
-  /* background-color: #; */
-  /* color: #fff; */
-  border-radius: 0.5rem;
-  border: none;
+  margin: 1rem auto;
+  padding: 0.7rem 1.5rem;
+  font-size: 1.2rem;
+  background-color: transparent;
+  color: #fff;
+  border-radius: 5rem;
+  border: 1px solid #fff;
   cursor: pointer;
+}
+
+.audio-controls {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5rem;
 }
 
 .audio-btn:hover {
   box-shadow: 0 0 1rem #ceb708;
   color: #000000;
-  background-color: #ceb708;
+  background-color: #f5a6b9;
+  border: none;
 }
 
 .toast {
