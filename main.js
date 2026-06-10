@@ -25,6 +25,5 @@ function resetAudio() {
     return;
   }
 
-  audio.pause();
   audio.currentTime = 0;
 }
