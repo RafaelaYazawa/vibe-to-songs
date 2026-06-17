@@ -84,6 +84,9 @@ class Ball {
     this.x += this.speedX;
     this.y += this.speedY;
 
+    this.speedX *= 0.97;
+    this.speedY *= 0.97;
+
     this.life--;
   }
 
@@ -98,7 +101,7 @@ class Ball {
 function animate() {
   if (!isPlaying) return;
 
-  ctx.fillStyle = "rgba(0, 0, 0, 0.03)";
+  ctx.fillStyle = "rgba(0, 0, 0, 0.08)";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
   balls.forEach((ball) => {
@@ -125,14 +128,15 @@ function drawScatteredBalls() {
   if (bass > 115) {
     const impactX = Math.random() * canvas.width;
     const impactY = Math.random() * canvas.height;
+    const intensity = bass / 255;
 
-    const red = Math.min(255, bass + Math.random() * 50);
-    const green = 50 + Math.random() * 100;
-    const blue = 150 + Math.random() * 100;
+    const red = 125 * intensity;
+    const green = 125 * intensity;
+    const blue = 250 * intensity;
 
     for (let i = 0; i < 20; i++) {
       const angle = Math.random() * Math.PI * 2;
-      const speed = Math.random() * 8;
+      const speed = Math.random() * 4;
 
       const speedX = Math.cos(angle) * speed;
       const speedY = Math.sin(angle) * speed;
@@ -141,7 +145,7 @@ function drawScatteredBalls() {
         new Ball(
           impactX,
           impactY,
-          Math.random() * (bass / 15),
+          Math.random() * (bass / 100),
           `rgba(${red}, ${green}, ${blue}, 0.7)`,
           speedX,
           speedY,
