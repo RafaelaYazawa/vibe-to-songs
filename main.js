@@ -58,38 +58,97 @@ function playAudio() {
   if (!isPlaying) {
     audioElement.play();
     isPlaying = true;
-    drawVisualizer();
+    animate();
+    drawScatteredBalls();
   } else {
     audioElement.pause();
     isPlaying = false;
   }
 }
 
-function drawVisualizer() {
+const balls = [];
+
+class Ball {
+  constructor(x, y, size, color, speedX, speedY) {
+    this.x = x;
+    this.y = y;
+    this.size = size;
+    this.color = color;
+    this.speedX = speedX;
+    this.speedY = speedY;
+
+    this.life = 100;
+  }
+
+  update() {
+    this.x += this.speedX;
+    this.y += this.speedY;
+
+    this.life--;
+  }
+
+  draw() {
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+    ctx.fillStyle = this.color;
+    ctx.fill();
+  }
+}
+
+function animate() {
   if (!isPlaying) return;
 
-  requestAnimationFrame(drawVisualizer);
+  ctx.fillStyle = "rgba(0, 0, 0, 0.03)";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  balls.forEach((ball) => {
+    ball.draw(ctx);
+    ball.update(canvas.width, canvas.height);
+  });
+
+  for (let i = balls.length - 1; i >= 0; i--) {
+    if (balls[i].life <= 0) {
+      balls.splice(i, 1);
+    }
+  }
+
+  requestAnimationFrame(animate);
+}
+
+function drawScatteredBalls() {
+  if (!isPlaying) return;
 
   analyzer.getByteFrequencyData(dataArray);
 
-  ctx.fillStyle = "rgba(0, 0, 0, 0.7)";
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  const bass = dataArray[5];
 
-  const barWidth = (canvas.width / bufferLength) * 2.5;
-  let x = 0;
+  if (bass > 115) {
+    const impactX = Math.random() * canvas.width;
+    const impactY = Math.random() * canvas.height;
 
-  for (let i = 0; i < bufferLength; i++) {
-    barHeight = dataArray[i];
+    const red = Math.min(255, bass + Math.random() * 50);
+    const green = 50 + Math.random() * 100;
+    const blue = 150 + Math.random() * 100;
 
-    const red = barHeight + 25 * (i / bufferLength);
-    const green = 250 * (i / bufferLength);
-    const blue = 50;
+    for (let i = 0; i < 20; i++) {
+      const angle = Math.random() * Math.PI * 2;
+      const speed = Math.random() * 8;
 
-    ctx.fillStyle = `rgb(${red},${green},${blue})`;
+      const speedX = Math.cos(angle) * speed;
+      const speedY = Math.sin(angle) * speed;
 
-    // Draw the rectangle bar (canvas 0,0 is top-left, so subtract height from canvas height)
-    ctx.fillRect(x, canvas.height - barHeight, barWidth - 2, barHeight);
-
-    x += barWidth;
+      balls.push(
+        new Ball(
+          impactX,
+          impactY,
+          Math.random() * (bass / 15),
+          `rgba(${red}, ${green}, ${blue}, 0.7)`,
+          speedX,
+          speedY,
+        ),
+      );
+    }
   }
+
+  requestAnimationFrame(drawScatteredBalls);
 }
