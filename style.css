@@ -4,11 +4,17 @@ body {
   color: #fff;
   font-family: Arial, sans-serif;
   text-align: center;
-  /* overflow: hidden; */
+  overflow: hidden;
 }
 
-.content {
-  padding: 1rem;
+.content-wrapper {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
 .canvas {
@@ -18,6 +24,11 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
+}
+
+.content {
+  padding: 1rem;
+  position: fixed;
 }
 
 .title {
@@ -34,7 +45,7 @@ body {
   animation-fill-mode: forwards;
 }
 
-@keyframes textDisperse {
+/* @keyframes textDisperse {
   0% {
     opacity: 1;
     text-shadow:
@@ -49,7 +60,7 @@ body {
     opacity: 0;
     transform: skewX(30deg) skewY(10deg);
   }
-}
+} */
 
 .audio-btn {
   margin: 1rem auto;

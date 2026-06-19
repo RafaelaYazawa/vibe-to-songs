@@ -51,6 +51,8 @@ function playAudio() {
     audioElement = initAudio();
   }
 
+  const title = document.querySelector(".title");
+
   if (audioCtx.state === "suspended") {
     audioCtx.resume();
   }
@@ -60,9 +62,13 @@ function playAudio() {
     isPlaying = true;
     animate();
     drawScatteredBalls();
+    playBtn.textContent = "Pause";
+    title.style.display = "none";
   } else {
     audioElement.pause();
     isPlaying = false;
+    playBtn.textContent = "Play";
+    title.style.display = "block";
   }
 }
 
@@ -130,13 +136,28 @@ function drawScatteredBalls() {
     const impactY = Math.random() * canvas.height;
     const intensity = bass / 255;
 
-    const red = 125 * intensity;
-    const green = 125 * intensity;
-    const blue = 250 * intensity;
+    let red;
+    let green;
+    let blue;
+
+    // console.log("Bass intensity:", intensity);
+    if (intensity > 0.81) {
+      red = 92 * intensity;
+      green = 166 * intensity;
+      blue = 206 * intensity;
+    } else if (intensity < 0.81) {
+      red = 185 * intensity;
+      green = 110 * intensity;
+      blue = 120 * intensity;
+    } else {
+      red = 115 * intensity;
+      green = 90 * intensity;
+      blue = 255 * intensity;
+    }
 
     for (let i = 0; i < 20; i++) {
       const angle = Math.random() * Math.PI * 2;
-      const speed = Math.random() * 4;
+      const speed = Math.random() * 3;
 
       const speedX = Math.cos(angle) * speed;
       const speedY = Math.sin(angle) * speed;
@@ -145,7 +166,7 @@ function drawScatteredBalls() {
         new Ball(
           impactX,
           impactY,
-          Math.random() * (bass / 100),
+          Math.random() * (bass / 200),
           `rgba(${red}, ${green}, ${blue}, 0.7)`,
           speedX,
           speedY,
