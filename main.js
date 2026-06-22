@@ -1,6 +1,8 @@
 const playBtn = document.getElementById("play-btn");
 const resetBtn = document.getElementById("reset-btn");
-const audio = new Audio("./audios/JENNIE -Seoul_City.mp3");
+const audio = new Audio(
+  "./audios/LISA - NEW WOMAN feat. Rosalía (Official Music Video).mp3",
+);
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 
@@ -25,6 +27,7 @@ function resetAudio() {
   }
 
   audio.currentTime = 0;
+  ctx.reset();
 }
 
 function initAudio() {
@@ -75,14 +78,19 @@ function playAudio() {
 const balls = [];
 
 class Ball {
-  constructor(x, y, size, color, speedX, speedY) {
+  constructor(x, y, size, r, g, b, speedX, speedY, freqIndex) {
     this.x = x;
     this.y = y;
     this.size = size;
-    this.color = color;
+
+    this.r = r;
+    this.g = g;
+    this.b = b;
+
     this.speedX = speedX;
     this.speedY = speedY;
 
+    this.freqIndex = freqIndex;
     this.life = 100;
   }
 
@@ -99,7 +107,7 @@ class Ball {
   draw() {
     ctx.beginPath();
     ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-    ctx.fillStyle = this.color;
+    ctx.fillStyle = `rgb(${this.r}, ${this.g}, ${this.b})`;
     ctx.fill();
   }
 }
@@ -107,7 +115,7 @@ class Ball {
 function animate() {
   if (!isPlaying) return;
 
-  ctx.fillStyle = "rgba(0, 0, 0, 0.08)";
+  ctx.fillStyle = "rgba(0, 0, 0, 0.09)";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
   balls.forEach((ball) => {
@@ -134,28 +142,21 @@ function drawScatteredBalls() {
   if (bass > 115) {
     const impactX = Math.random() * canvas.width;
     const impactY = Math.random() * canvas.height;
-    const intensity = bass / 255;
-
-    let red;
-    let green;
-    let blue;
 
     // console.log("Bass intensity:", intensity);
-    if (intensity > 0.81) {
-      red = 92 * intensity;
-      green = 166 * intensity;
-      blue = 206 * intensity;
-    } else if (intensity < 0.81) {
-      red = 185 * intensity;
-      green = 110 * intensity;
-      blue = 120 * intensity;
-    } else {
-      red = 115 * intensity;
-      green = 90 * intensity;
-      blue = 255 * intensity;
-    }
 
     for (let i = 0; i < 20; i++) {
+      const freqIndex = Math.floor((i / 20) * bufferLength);
+      const energy = dataArray[freqIndex] / 255;
+
+      const r = 255 * (1 - energy) + 100 * energy;
+      const g = 215 * (1 - energy) + 149 * energy;
+      const b = 0 * (1 - energy) + 237 * energy;
+
+      console.log(
+        `Freq Index: ${freqIndex}, Energy: ${energy.toFixed(2)}, Color: rgb(${r.toFixed(0)}, ${g.toFixed(0)}, ${b.toFixed(0)})`,
+      );
+
       const angle = Math.random() * Math.PI * 2;
       const speed = Math.random() * 3;
 
@@ -166,14 +167,21 @@ function drawScatteredBalls() {
         new Ball(
           impactX,
           impactY,
-          Math.random() * (bass / 200),
-          `rgba(${red}, ${green}, ${blue}, 0.7)`,
+          Math.random() * (bass / 150),
+          r,
+          g,
+          b,
           speedX,
           speedY,
+          freqIndex,
         ),
       );
     }
   }
 
   requestAnimationFrame(drawScatteredBalls);
+}
+
+function lerp(start, end, t) {
+  return start + (end - start) * t;
 }
