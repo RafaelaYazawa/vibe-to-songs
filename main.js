@@ -1,8 +1,17 @@
 const playBtn = document.getElementById("play-btn");
 const resetBtn = document.getElementById("reset-btn");
-const audio = new Audio(
-  "./audios/LISA - NEW WOMAN feat. Rosalía (Official Music Video).mp3",
-);
+const audio = new Audio("./audios/JENNIE -Seoul_City.mp3");
+
+const palettes = [
+  ["#088fe9", "#29be62", "#e9b63f"],
+  ["#ff6b6b", "#f06595", "#845ef7"],
+  ["#1fc0dc", "#dc7f21", "#c8d331"],
+  ["#e3cd2c", "#612cde", "#d319e7"],
+  ["#2b5ffa", "#ee33ff", "#d545ee"],
+];
+
+let currentPalette = palettes[Math.floor(Math.random() * palettes.length)];
+
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 
@@ -61,6 +70,8 @@ function playAudio() {
   }
 
   if (!isPlaying) {
+    currentPalette = getRandomPalette(currentPalette);
+
     audioElement.play();
     isPlaying = true;
     animate();
@@ -144,18 +155,30 @@ function drawScatteredBalls() {
     const impactY = Math.random() * canvas.height;
 
     // console.log("Bass intensity:", intensity);
+    const low = convertHexToRgb(currentPalette[0]);
+    const mid = convertHexToRgb(currentPalette[1]);
+    const high = convertHexToRgb(currentPalette[2]);
 
     for (let i = 0; i < 20; i++) {
-      const freqIndex = Math.floor((i / 20) * bufferLength);
+      const freqIndex = Math.floor(Math.random() * bufferLength);
       const energy = dataArray[freqIndex] / 255;
 
-      const r = 255 * (1 - energy) + 100 * energy;
-      const g = 215 * (1 - energy) + 149 * energy;
-      const b = 0 * (1 - energy) + 237 * energy;
+      let r, g, b;
+      console.log("currentPalette:", currentPalette);
 
-      console.log(
-        `Freq Index: ${freqIndex}, Energy: ${energy.toFixed(2)}, Color: rgb(${r.toFixed(0)}, ${g.toFixed(0)}, ${b.toFixed(0)})`,
-      );
+      if (energy < 0.5) {
+        const t = energy * 2;
+
+        r = lerp(low.r, mid.r, t);
+        g = lerp(low.g, mid.g, t);
+        b = lerp(low.b, mid.b, t);
+      } else {
+        const t = (energy - 0.5) * 2;
+
+        r = lerp(mid.r, high.r, t);
+        g = lerp(mid.g, high.g, t);
+        b = lerp(mid.b, high.b, t);
+      }
 
       const angle = Math.random() * Math.PI * 2;
       const speed = Math.random() * 3;
@@ -184,4 +207,24 @@ function drawScatteredBalls() {
 
 function lerp(start, end, t) {
   return start + (end - start) * t;
+}
+
+function convertHexToRgb(hex) {
+  const bigint = parseInt(hex.slice(1), 16);
+
+  return {
+    r: (bigint >> 16) & 255,
+    g: (bigint >> 8) & 255,
+    b: bigint & 255,
+  };
+}
+
+function getRandomPalette(palette) {
+  let newPalette;
+
+  do {
+    newPalette = palettes[Math.floor(Math.random() * palettes.length)];
+  } while (newPalette === palette);
+
+  return newPalette;
 }
