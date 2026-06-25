@@ -2,16 +2,6 @@ const playBtn = document.getElementById("play-btn");
 const resetBtn = document.getElementById("reset-btn");
 const audio = new Audio("./audios/JENNIE -Seoul_City.mp3");
 
-const palettes = [
-  ["#088fe9", "#29be62", "#e9b63f"],
-  ["#ff6b6b", "#f06595", "#845ef7"],
-  ["#1fc0dc", "#dc7f21", "#c8d331"],
-  ["#e3cd2c", "#612cde", "#d319e7"],
-  ["#2b5ffa", "#ee33ff", "#d545ee"],
-];
-
-let currentPalette = palettes[Math.floor(Math.random() * palettes.length)];
-
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 
@@ -56,7 +46,6 @@ function initAudio() {
 }
 
 let audioElement;
-let barHeight;
 
 function playAudio() {
   if (!audioCtx) {
@@ -70,8 +59,6 @@ function playAudio() {
   }
 
   if (!isPlaying) {
-    currentPalette = getRandomPalette(currentPalette);
-
     audioElement.play();
     isPlaying = true;
     animate();
@@ -89,7 +76,7 @@ function playAudio() {
 const balls = [];
 
 class Ball {
-  constructor(x, y, size, r, g, b, speedX, speedY, freqIndex) {
+  constructor(x, y, size, r, g, b, speedX, speedY) {
     this.x = x;
     this.y = y;
     this.size = size;
@@ -101,7 +88,6 @@ class Ball {
     this.speedX = speedX;
     this.speedY = speedY;
 
-    this.freqIndex = freqIndex;
     this.life = 100;
   }
 
@@ -154,34 +140,17 @@ function drawScatteredBalls() {
     const impactX = Math.random() * canvas.width;
     const impactY = Math.random() * canvas.height;
 
-    // console.log("Bass intensity:", intensity);
-    const low = convertHexToRgb(currentPalette[0]);
-    const mid = convertHexToRgb(currentPalette[1]);
-    const high = convertHexToRgb(currentPalette[2]);
-
     for (let i = 0; i < 20; i++) {
-      const freqIndex = Math.floor(Math.random() * bufferLength);
-      const energy = dataArray[freqIndex] / 255;
+      const bassEnergy = averageBins(0, 15);
+      const vocalEnergy = averageBins(15, 50);
+      const trebleEnergy = averageBins(50, 128);
 
-      let r, g, b;
-      console.log("currentPalette:", currentPalette);
-
-      if (energy < 0.5) {
-        const t = energy * 2;
-
-        r = lerp(low.r, mid.r, t);
-        g = lerp(low.g, mid.g, t);
-        b = lerp(low.b, mid.b, t);
-      } else {
-        const t = (energy - 0.5) * 2;
-
-        r = lerp(mid.r, high.r, t);
-        g = lerp(mid.g, high.g, t);
-        b = lerp(mid.b, high.b, t);
-      }
+      const r = bassEnergy;
+      const g = vocalEnergy;
+      const b = trebleEnergy;
 
       const angle = Math.random() * Math.PI * 2;
-      const speed = Math.random() * 3;
+      const speed = Math.random() * 2;
 
       const speedX = Math.cos(angle) * speed;
       const speedY = Math.sin(angle) * speed;
@@ -190,13 +159,12 @@ function drawScatteredBalls() {
         new Ball(
           impactX,
           impactY,
-          Math.random() * (bass / 150),
+          Math.random() * (bass / 100),
           r,
           g,
           b,
           speedX,
           speedY,
-          freqIndex,
         ),
       );
     }
@@ -205,26 +173,12 @@ function drawScatteredBalls() {
   requestAnimationFrame(drawScatteredBalls);
 }
 
-function lerp(start, end, t) {
-  return start + (end - start) * t;
-}
+function averageBins(start, end) {
+  let sum = 0;
 
-function convertHexToRgb(hex) {
-  const bigint = parseInt(hex.slice(1), 16);
+  for (let i = start; i < end; i++) {
+    sum += dataArray[i];
+  }
 
-  return {
-    r: (bigint >> 16) & 255,
-    g: (bigint >> 8) & 255,
-    b: bigint & 255,
-  };
-}
-
-function getRandomPalette(palette) {
-  let newPalette;
-
-  do {
-    newPalette = palettes[Math.floor(Math.random() * palettes.length)];
-  } while (newPalette === palette);
-
-  return newPalette;
+  return sum / (end - start);
 }
