@@ -45,23 +45,6 @@ body {
   animation-fill-mode: forwards;
 }
 
-/* @keyframes textDisperse {
-  0% {
-    opacity: 1;
-    text-shadow:
-      0 2rem 2rem #ff0095,
-      0 2rem 2rem #8800ff,
-      -2rem 0 2rem #00aaff;
-  }
-  50% {
-    opacity: 0.5;
-  }
-  100% {
-    opacity: 0;
-    transform: skewX(30deg) skewY(10deg);
-  }
-} */
-
 .audio-btn {
   margin: 1rem auto;
   padding: 0.7rem 1.5rem;
