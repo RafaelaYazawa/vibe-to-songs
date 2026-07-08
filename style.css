@@ -1,80 +1,27 @@
 body {
-  max-height: 100vh;
-  background-color: #000;
+  font-family: "MuseoModerno", Arial, sans-serif;
+  background-color: #171616;
   color: #fff;
-  font-family: Arial, sans-serif;
-  text-align: center;
-  overflow: hidden;
-}
-
-.content-wrapper {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
-
-.canvas {
-  z-index: -1;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-
-.content {
-  padding: 1rem;
-  position: fixed;
+  margin: 0;
+  padding: 0;
+  max-width: 100vw;
+  padding: 0;
 }
 
 .title {
-  font-size: 5rem;
-  text-transform: uppercase;
-  text-shadow: 0 0 0.5rem #ffffff;
+  font-weight: 300;
   font-style: italic;
-  letter-spacing: 0.2rem;
-  margin-bottom: 20px;
+  font-size: clamp(3rem, 3vw, 4rem);
+  text-align: center;
+  margin-top: 5rem;
+  margin-bottom: 0;
+  padding: clamp(1rem, 5vw, 2rem);
 }
 
-.title:hover {
-  animation: textDisperse 1.2s linear;
-  animation-fill-mode: forwards;
-}
-
-.audio-btn {
-  margin: 1rem auto;
-  padding: 0.7rem 1.5rem;
-  font-size: 1.2rem;
-  background-color: transparent;
-  color: #fff;
-  border-radius: 5rem;
-  border: 1px solid #fff;
-  cursor: pointer;
-}
-
-.audio-controls {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  gap: 5rem;
-}
-
-.audio-btn:hover {
-  box-shadow: 0 0 1rem #ceb708;
-  color: #000000;
-  background-color: #f5a6b9;
-  border: none;
-}
-
-.toast {
-  opacity: 0;
-  transition: opacity 0.5s ease-in-out;
-}
-
-.toast.show {
-  opacity: 1;
+.mood-container {
+  padding: clamp(1rem, 5vw, 2rem);
+  font-size: clamp(1rem, 2vw, 1.5rem);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
 }
