@@ -22,7 +22,6 @@ body {
   padding: clamp(1rem, 5vw, 2rem);
   font-size: clamp(1rem, 2vw, 1.5rem);
   display: grid;
-  grid-template-columns: repeat(max(1, 2), minmax(1rem, 1fr));
-  grid-template-rows: repeat(auto-fit, minmax(5rem, 1fr));
-  grid-gap: 1rem;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
 }
