@@ -29,6 +29,7 @@ body {
 
 .genre-card {
   width: 100%;
+  font-family: inherit;
   background-color: transparent;
   border: 1px solid #fff;
   border-radius: 0.5rem;
@@ -36,4 +37,14 @@ body {
   font-size: clamp(1rem, 2vw, 1.5rem);
   height: 10rem;
   cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.genre-card:hover {
+  transform: scale(1.05);
+  background-color: #fff;
+  color: #171616;
+  border-color: #fff;
 }
