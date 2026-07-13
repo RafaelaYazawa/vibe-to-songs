@@ -56,11 +56,12 @@ body {
 
 .dreamy {
   position: relative;
+  background: linear-gradient(200deg, #ffadfe 0%, #0057ff 100%);
 }
 
 .dreamy:hover {
-  background: linear-gradient(200deg, #ffadfe 0%, #0057ff 100%);
-  color: #0f0e0e;
+  background: linear-gradient(200deg, #4c00a8b3 0%, #000a9199 100%);
+  color: #ffffff;
   border-color: #f0e6f6;
 }
 
