@@ -1,3 +1,5 @@
+@import "./background-card.css";
+
 body {
   font-family: "MuseoModerno", Arial, sans-serif;
   background-color: #171616;
@@ -25,63 +27,6 @@ body {
   display: grid;
   grid-template-columns: 1fr;
   gap: 1rem;
-}
-
-.genre-card {
-  width: 100%;
-  font-family: inherit;
-  background-color: transparent;
-  border: 1px solid #fff;
-  border-radius: 0.5rem;
-  color: #fff;
-  font-size: clamp(1rem, 2vw, 1.5rem);
-  height: 10rem;
-  cursor: pointer;
-  overflow: hidden;
-  transition:
-    transform 0.2s ease,
-    background-color 0.2s ease;
-}
-
-.genre-title {
-  font-size: clamp(1.5rem, 2vw, 2rem);
-}
-
-.genre-card:hover {
-  transform: scale(1.05);
-  background-color: #fff;
-  color: #171616;
-  border-color: #fff;
-}
-
-.dreamy {
-  position: relative;
-  background: linear-gradient(200deg, #ffadfe 0%, #0057ff 100%);
-}
-
-.dreamy:hover {
-  background: linear-gradient(200deg, #4c00a8b3 0%, #000a9199 100%);
-  color: #ffffff;
-  border-color: #f0e6f6;
-}
-
-.genre-background {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
-  opacity: 0;
-  transition: opacity 0.2s ease-in;
-}
-
-.genre-card:hover .genre-background {
-  opacity: 1;
-}
-
-.genre-content {
-  position: relative;
-  z-index: 1;
 }
 
 @media (min-width: 768px) {
