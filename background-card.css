@@ -31,14 +31,19 @@
 }
 
 .happy {
-  background: linear-gradient(200deg, #ffb042 0%, #ff2f00 100%);
+  background: linear-gradient(to bottom, #f89710 0%, #ff2f00 100%);
+  color: #1e1e1e;
 }
-.dreamy {
-  background: linear-gradient(200deg, #ffadfe 0%, #0057ff 100%);
+.happy:hover {
+  background: linear-gradient(to bottom, #07455a, #427e7c, #b5713e, #e87121);
+  /* color: #ffffff; */
 }
 
+.dreamy {
+  background: linear-gradient(to bottom, #ffadfe 0%, #0057ff 100%);
+}
 .dreamy:hover {
-  background: linear-gradient(200deg, #4c00a8b3 0%, #000a9199 100%);
+  background: linear-gradient(to bottom, #4c00a8b3 0%, #000a9199 100%);
   color: #ffffff;
   border-color: #f0e6f6;
 }
