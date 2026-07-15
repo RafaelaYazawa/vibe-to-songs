@@ -10,7 +10,8 @@
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=MuseoModerno:ital,wght@0,100..900;1,100..900&display=swap"
+        <link
+            href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,400;0,500;1,300;1,400&family=MuseoModerno:ital,wght@0,100..900;1,100..900&display=swap"
             rel="stylesheet">
 
         <title>
@@ -19,10 +20,28 @@
     </head>
 
     <body>
-        <h1 class="title">Song Visualizer</h1>
+        <div class="title-container">
+            <h1 class="title">Song Visualizer</h1>
+            <p class="sub-text">For better concentration</p>
+        </div>
 
         <div class="mood-container">
             <button class="genre-card happy">
+                <svg class="genre-background" viewBox="0 0 200 100">
+                    <circle cx="100" cy="120" r="50" fill="#f59542" stroke="#ffc796" stroke-width="1"></circle>
+
+                    <g class="rays">
+                        <line x1="10" y1="90" x2="50" y2="90" stroke="#f59542" stroke-width="1" />
+
+                        <line x1="100" y1="60" x2="100" y2="30" stroke="#f59542" stroke-width="1" />
+
+                        <line x1="120" y1="62" x2="135" y2="35" stroke="#f59542" stroke-width="1"></line>
+
+                        <line x1="120" y1="62" x2="135" y2="35" stroke="#f59542" stroke-width="1"></line>
+
+                        <line x1="150" y1="90" x2="190" y2="90" stroke="#f59542" stroke-width="1"></line>
+                    </g>
+                </svg>
                 <div class="genre-content">
                     <h2 class="genre-title">
                         Happy
