@@ -31,16 +31,25 @@
 }
 
 .happy {
-  background: linear-gradient(to bottom, #f89710 0%, #ff2f00 100%);
+  background: linear-gradient(to bottom, #f8d510 0%, #ff8400 100%);
   color: #1e1e1e;
 }
 .happy:hover {
   background: linear-gradient(to bottom, #07455a, #427e7c, #b5713e, #e87121);
-  /* color: #ffffff; */
+  color: #ffffff;
+}
+
+.sad {
+  background: linear-gradient(to bottom, #00abff 0%, #08021f 100%);
+}
+.sad:hover {
+  background: linear-gradient(to bottom, #5f7c97 0%, #415d7a 45%, #23384d 100%);
+  color: #ffffff;
 }
 
 .dreamy {
   background: linear-gradient(to bottom, #ffadfe 0%, #0057ff 100%);
+  color: #1e1e1e;
 }
 .dreamy:hover {
   background: linear-gradient(to bottom, #4c00a8b3 0%, #000a9199 100%);
