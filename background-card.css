@@ -36,7 +36,15 @@
 }
 .happy:hover {
   background: linear-gradient(to bottom, #07455a, #427e7c, #b5713e, #e87121);
-  /* color: #ffffff; */
+  color: #ffffff;
+}
+
+.sad {
+  background: linear-gradient(to bottom, #00abff 0%, #08021f 100%);
+}
+.sad:hover {
+  background: linear-gradient(to bottom, #5f7c97 0%, #415d7a 45%, #23384d 100%);
+  color: #ffffff;
 }
 
 .dreamy {
