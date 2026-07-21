@@ -47,6 +47,15 @@
   color: #ffffff;
 }
 
+.pop {
+  background: linear-gradient(to bottom, #ff66c4 0%, #ffde59 100%);
+  color: #1e1e1e;
+}
+.pop:hover {
+  background: linear-gradient(to bottom, #ff66c4 0%, #ffde59 100%);
+  color: #1e1e1e;
+}
+
 .dreamy {
   background: linear-gradient(to bottom, #ffadfe 0%, #0057ff 100%);
   color: #1e1e1e;
