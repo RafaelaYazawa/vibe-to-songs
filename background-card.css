@@ -26,8 +26,13 @@
 }
 
 .happy,
+.sad,
+.pop,
 .dreamy {
   position: relative;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
 }
 
 .happy {
@@ -52,8 +57,11 @@
   color: #1e1e1e;
 }
 .pop:hover {
-  background: linear-gradient(to bottom, #ff66c4 0%, #ffde59 100%);
-  color: #1e1e1e;
+  background: linear-gradient(to bottom, #1a1a1a 0%, #0c0c0c 100%);
+  color: #000;
+}
+.pop:hover .genre-title {
+  color: #fff;
 }
 
 .dreamy {
