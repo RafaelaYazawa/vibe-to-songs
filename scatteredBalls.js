@@ -1,12 +1,13 @@
-import { Ball } from "./ball.js";
-import { analyzer, dataArray, isPlaying } from "./audio.js";
+import Ball from "./ball.js";
+import { analyzer, dataArray } from "./audio.js";
 import { canvas, ctx } from "./canvas.js";
 import { averageBins } from "./utils.js";
 
 const balls = [];
+let animationRunning = false;
 
-export function animate() {
-  if (!isPlaying) return;
+function animate() {
+  if (!animationRunning) return;
 
   ctx.fillStyle = "rgba(0, 0, 0, 0.09)";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -25,9 +26,7 @@ export function animate() {
   requestAnimationFrame(animate);
 }
 
-export function drawScatteredBalls() {
-  if (!isPlaying) return;
-
+function drawScatteredBalls() {
   analyzer.getByteFrequencyData(dataArray);
 
   const bass = dataArray[5];
@@ -71,4 +70,16 @@ export function drawScatteredBalls() {
 
 export function clearBalls() {
   balls.length = 0;
+}
+
+export function startAnimation() {
+  if (animationRunning) return;
+
+  animationRunning = true;
+  animate();
+  drawScatteredBalls();
+}
+
+export function stopAnimation() {
+  animationRunning = false;
 }

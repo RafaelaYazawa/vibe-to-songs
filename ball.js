@@ -1,4 +1,6 @@
-class Ball {
+import { ctx } from "./canvas.js";
+
+export default class Ball {
   constructor(x, y, size, r, g, b, speedX, speedY) {
     this.x = x;
     this.y = y;

@@ -1,25 +1,37 @@
 import { playAudio, resetAudio } from "./audio.js";
-import { animate, drawScatteredBalls } from "./scatteredBalls.js";
+import { startAnimation, stopAnimation, clearBalls } from "./scatteredBalls.js";
 import { clearCanvas } from "./canvas.js";
-import { clearBalls } from "./scatteredBalls.js";
 
-const playBtn = document.getElementById("play-btn");
-const resetBtn = document.getElementById("reset-btn");
+// const playBtn = document.getElementById("play-btn");
+// const resetBtn = document.getElementById("reset-btn");
+// const title = document.querySelector(".title");
+const genreCards = document.querySelectorAll(".genre-card");
 
-playBtn.addEventListener("click", () => {
-  const started = playAudio();
+// playBtn.addEventListener("click", () => {
+//   const playing = playAudio();
 
-  if (started) {
-    animate();
-    drawScatteredBalls();
-  }
-});
+//   if (playing) {
+//     // Start the animation when audio is playing
+//     startAnimation();
+//   } else {
+//     // Stop the animation when audio is paused
+//     stopAnimation();
+//   }
+// });
 
-resetBtn.addEventListener("click", () => {
-  resetAudio();
-  clearCanvas();
-  clearBalls();
+// resetBtn.addEventListener("click", () => {
+//   resetAudio();
+//   clearCanvas();
+//   clearBalls();
 
-  title.style.display = "block";
-  playBtn.textContent = "Play";
+//   playBtn.textContent = "Play";
+//   title.style.display = "block";
+// });
+
+genreCards.forEach((card) => {
+  card.addEventListener("click", (event) => {
+    const selectedGenre = event.currentTarget.dataset.genre;
+
+    console.log(`Selected genre: ${selectedGenre}`);
+  });
 });

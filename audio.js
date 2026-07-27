@@ -1,11 +1,9 @@
-import { ctx } from "./canvas.js";
-
+export let analyzer;
+export let dataArray;
 let audioCtx;
 let audioSource;
-let analyzer;
 let isPlaying;
 let bufferLength;
-let dataArray;
 let audioElement;
 
 const audio = new Audio("./audios/JENNIE -Seoul_City.mp3");
@@ -30,8 +28,6 @@ export function playAudio() {
   if (!audioCtx) {
     audioElement = initAudio();
   }
-
-  const title = document.querySelector(".title");
 
   if (audioCtx.state === "suspended") {
     audioCtx.resume();
