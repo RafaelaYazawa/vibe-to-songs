@@ -54,5 +54,3 @@ export function resetAudio() {
   audio.currentTime = 0;
   isPlaying = false;
 }
-
-export { analyzer, dataArray };
