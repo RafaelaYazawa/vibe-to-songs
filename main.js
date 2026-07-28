@@ -1,6 +1,10 @@
-import { playAudio, resetAudio } from "./audio.js";
-import { startAnimation, stopAnimation, clearBalls } from "./scatteredBalls.js";
-import { clearCanvas } from "./canvas.js";
+import { playAudio, resetAudio } from "./js-modules/audio.js";
+import {
+  startAnimation,
+  stopAnimation,
+  clearBalls,
+} from "./js-modules/scatteredBalls.js";
+import { clearCanvas } from "./js-modules/canvas.js";
 
 // const playBtn = document.getElementById("play-btn");
 // const resetBtn = document.getElementById("reset-btn");
@@ -33,5 +37,28 @@ genreCards.forEach((card) => {
     const selectedGenre = event.currentTarget.dataset.genre;
 
     console.log(`Selected genre: ${selectedGenre}`);
+
+    switch (selectedGenre) {
+      case "happy":
+        window.location.href = "./genres/happy.html";
+        break;
+      case "sad":
+        window.location.href = "./genres/sad.html";
+        break;
+      case "pop":
+        window.location.href = "./genres/pop.html";
+        break;
+      case "jazz":
+        window.location.href = "./genres/jazz.html";
+        break;
+      case "classical":
+        window.location.href = "./genres/classical.html";
+        break;
+      case "dreamy":
+        window.location.href = "./genres/dreamy.html";
+        break;
+      default:
+        console.error("Unknown genre selected");
+    }
   });
 });
