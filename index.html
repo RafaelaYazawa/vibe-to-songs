@@ -28,9 +28,9 @@
         <div>
             <h2 class="sub-text">Choose a scene...</h2>
         </div>
-        <div class="mood-container">
-            <button class="genre-card happy" data-genre="happy">
-                <svg class="genre-background" viewBox="0 0 200 100">
+        <div class="scene-container">
+            <button class="scene-card happy" data-scene="happy">
+                <svg class="scene-background" viewBox="0 0 200 100">
                     <circle cx="100" cy="120" r="50" fill="#f59542" stroke="#ffc796" stroke-width="1"></circle>
 
                     <g class="rays">
@@ -53,8 +53,8 @@
                         <line x1="150" y1="95" x2="190" y2="95" stroke="#f59542" stroke-width="1"></line>
                     </g>
                 </svg>
-                <div class="genre-content">
-                    <h2 class="genre-title">
+                <div class="scene-content">
+                    <h2 class="scene-title">
                         Happy
                     </h2>
                     <p class="happy-text">
@@ -63,8 +63,8 @@
                 </div>
             </button>
 
-            <button class="genre-card sad" data-genre="sad">
-                <svg class="genre-background" viewBox="0 0 200 100">
+            <button class="scene-card sad" data-scene="sad">
+                <svg class="scene-background" viewBox="0 0 200 100">
                     <g class="cloud" fill="#fff" stroke="#ffffff" stroke-width="1">
                         <circle cx="9" cy="30" r="8"></circle>
                         <circle cx="25" cy="25" r="12"></circle>
@@ -82,8 +82,8 @@
                     </g>
                 </svg>
 
-                <div class="genre-content">
-                    <h2 class="genre-title">
+                <div class="scene-content">
+                    <h2 class="scene-title">
                         Sad
                     </h2>
                     <p class="sad-text">
@@ -91,8 +91,8 @@
                     </p>
                 </div>
             </button>
-            <button class="genre-card pop" data-genre="pop">
-                <svg class="genre-background" viewBox="0 0 200 100">
+            <button class="scene-card pop" data-scene="pop">
+                <svg class="scene-background" viewBox="0 0 200 100">
                     <g class="spotlight" fill="#f5f5f5" opacity="0.85">
                         <line x1="80" y1="35" x2="0" y2="78" stroke="#fff" stroke-width="1"></line>
 
@@ -119,8 +119,8 @@
 
                 </svg>
 
-                <div class="genre-content">
-                    <h2 class="genre-title">
+                <div class="scene-content">
+                    <h2 class="scene-title">
                         Pop
                     </h2>
                     <p class="pop-text">
@@ -128,14 +128,14 @@
                     </p>
                 </div>
             </button>
-            <button class="genre-card" data-genre="jazz">
+            <button class="scene-card" data-scene="jazz">
                 Jazz
             </button>
-            <button class="genre-card" data-genre="classical">
+            <button class="scene-card" data-scene="classical">
                 Classical
             </button>
-            <button class="genre-card dreamy" data-genre="dreamy">
-                <svg class="genre-background" viewBox="0 0 200 100">
+            <button class="scene-card dreamy" data-scene="dreamy">
+                <svg class="scene-background" viewBox="0 0 200 100">
                     <defs>
                         <mask id="crescent-mask">
                             <rect width="120" height="100" fill="white" />
@@ -179,8 +179,8 @@
                     </g>
                 </svg>
 
-                <div class="genre-content">
-                    <h2 class="genre-title">
+                <div class="scene-content">
+                    <h2 class="scene-title">
                         Dreamy
                     </h2>
                     <p class="dreamy-text">
@@ -188,18 +188,13 @@
                     </p>
                 </div>
             </button>
-            <button class="genre-card" data-genre="romantic">
+            <button class="scene-card" data-scene="romantic">
                 Romantic
             </button>
-            <button class="genre-card" data-genre="hip-hop">
+            <button class="scene-card" data-scene="hip-hop">
                 Hip-Hop
             </button>
         </div>
-
-        <div class="canvas-container">
-            <canvas id="canvas"></canvas>
-        </div>
-
 
         <script type="module" src="main.js"></script>
     </body>
