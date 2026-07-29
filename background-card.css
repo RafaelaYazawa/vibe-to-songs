@@ -1,4 +1,4 @@
-.genre-card {
+.scene-card {
   width: 100%;
   font-family: inherit;
   background-color: transparent;
@@ -8,17 +8,17 @@
   font-size: clamp(1rem, 2vw, 1rem);
   max-height: 15rem;
   cursor: pointer;
-  overflow: hidden;
+  /* overflow: hidden; */
   transition:
     transform 0.2s ease,
     background-color 0.2s ease;
 }
 
-.genre-title {
+.scene-title {
   font-size: clamp(1.5rem, 2vw, 2rem);
 }
 
-.genre-card:hover {
+.scene-card:hover {
   transform: scale(1.05);
   background-color: #fff;
   color: #171616;
@@ -60,7 +60,7 @@
   background: linear-gradient(to bottom, #707070 0%, #0c0c0c 100%);
   color: #000;
 }
-.pop:hover .genre-title {
+.pop:hover .scene-title {
   color: #fff;
 }
 
@@ -74,7 +74,7 @@
   border-color: #f0e6f6;
 }
 
-.genre-background {
+.scene-background {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -85,11 +85,11 @@
   transition: opacity 0.2s ease-in;
 }
 
-.genre-card:hover .genre-background {
+.scene-card:hover .scene-background {
   opacity: 1;
 }
 
-.genre-content {
+.scene-content {
   position: relative;
   z-index: 1;
 }

@@ -35,7 +35,7 @@ body {
   margin: 0 auto;
 }
 
-.mood-container {
+.scene-container {
   padding: clamp(1rem, 5vw, 2rem);
   padding-top: clamp(0.5rem, 2vw, 1rem);
   font-size: clamp(1rem, 2vw, 1.5rem);
@@ -45,7 +45,15 @@ body {
 }
 
 @media (min-width: 768px) {
-  .mood-container {
+  .scene-container {
     grid-template-columns: repeat(4, 1fr);
   }
+}
+
+.controls-container {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+  background-color: #bc0c0c;
 }
