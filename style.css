@@ -14,7 +14,7 @@ body {
 
 .title-container {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   padding: clamp(1rem, 5vw, 2rem);
 }
@@ -52,8 +52,26 @@ body {
 
 .controls-container {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   gap: 1rem;
-  margin-top: 1rem;
-  background-color: #bc0c0c;
+  margin: 0 auto;
+  max-width: 30rem;
+  /* background-color: #bc0c0c; */
+}
+
+input[type="file"] {
+  padding: 0.5rem 1rem;
+  background-color: transparent;
+  border: 1px solid #fff;
+  border-radius: 0.5rem;
+}
+
+.control-button {
+  padding: 0.5rem 1rem;
+  background-color: transparent;
+  color: #fff;
+  border: 1px solid #fff;
+  border-radius: 0.5rem;
+  display: inline-block;
 }
